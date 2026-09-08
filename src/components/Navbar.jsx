@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
-import profilePic from '../assets/profile.jpg';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,19 +31,16 @@ export default function Navbar() {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand / Profile Avatar & Logo */}
+        {/* Brand / IR Logo */}
         <a href="#" className="flex items-center gap-3 group shrink-0">
-          <div className="relative w-10 h-10 rounded-full p-[1.5px] bg-gradient-to-br from-[#00F5A0] to-[#00D2FF] shadow-md shadow-[#00F5A0]/20 shrink-0">
-            <img
-              src={profilePic}
-              alt="Ibrahim Rinub Babu"
-              className="w-full h-full rounded-full object-cover border border-[#07090e]"
-            />
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#00F5A0] ring-2 ring-[#07090e]" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00F5A0] to-[#00D2FF] p-[1px] shadow-lg shadow-[#00F5A0]/20 shrink-0">
+            <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center font-bold text-white text-base font-heading">
+              IR
+            </div>
           </div>
 
           <div className="flex flex-col">
-            <div className="font-heading font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
+            <div className="font-heading font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2.5">
               <span>Ibrahim Rinub Babu</span>
               <span className="hidden sm:inline-block text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-[#F59E0B]/15 border border-[#F59E0B]/30 text-[#F59E0B] whitespace-nowrap">
                 AVP @ Citi
@@ -102,18 +98,6 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="lg:hidden bg-[#0d111a] border-b border-white/10 px-6 py-4 flex flex-col gap-3 shadow-2xl mt-2">
-          <div className="flex items-center gap-3 pb-3 border-b border-white/10">
-            <img
-              src={profilePic}
-              alt="Ibrahim Rinub Babu"
-              className="w-10 h-10 rounded-full object-cover border border-[#00F5A0]"
-            />
-            <div>
-              <div className="text-sm font-bold text-white">Ibrahim Rinub Babu</div>
-              <div className="text-xs text-[#00F5A0] font-mono">AVP @ Citi | AWS Data Engineer</div>
-            </div>
-          </div>
-
           <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold">
             <ShieldCheck className="w-4 h-4 shrink-0" />
             <span>Stamp 4 Visa Holder — No Sponsorship Required</span>
