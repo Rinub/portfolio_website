@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Menu, X, Sparkles, ExternalLink } from 'lucide-react';
+import { Menu, X, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,16 +32,16 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand / Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="#" className="flex items-center gap-3 group shrink-0">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00F5A0] to-[#00D2FF] p-[1px] shadow-lg shadow-[#00F5A0]/20 shrink-0">
             <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center font-bold text-white text-base font-heading">
               IR
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="font-heading font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
+            <div className="font-heading font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2.5">
               <span>Ibrahim Rinub Babu</span>
-              <span className="hidden sm:inline-block text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B]">
+              <span className="hidden sm:inline-block text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-[#F59E0B]/15 border border-[#F59E0B]/30 text-[#F59E0B] whitespace-nowrap">
                 AVP @ Citi
               </span>
             </div>
@@ -52,39 +52,35 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden lg:flex items-center gap-4">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-mono font-medium text-slate-300 hover:text-[#00F5A0] transition-colors py-1.5 px-2.5 rounded-md hover:bg-white/5"
+              className="text-xs font-mono font-medium text-slate-300 hover:text-[#00F5A0] transition-colors py-1.5 px-2 rounded-md hover:bg-white/5 whitespace-nowrap"
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Header Action Buttons */}
+        {/* Header Action Buttons & Stamp 4 Highlight */}
         <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Stamp 4 (No Sponsorship Req.)</span>
+          </div>
+
           <a
             href="https://text-to-sql-agent-uenh.onrender.com/"
             target="_blank"
             rel="noreferrer"
-            className="btn btn-secondary text-xs px-3.5 py-2 flex items-center gap-1.5"
+            className="btn btn-primary text-xs px-4 py-2 flex items-center gap-1.5 whitespace-nowrap"
             title="Live Demo - Self-Healing Text-to-SQL Agent"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#00F5A0]" />
-            <span>SQL Agent Demo</span>
-            <ExternalLink className="w-3 h-3 text-slate-400" />
-          </a>
-
-          <a
-            href="/resume_faangpath.tex"
-            download="Ibrahim_Rinub_Babu_Resume.tex"
-            className="btn btn-primary text-xs px-3.5 py-2 flex items-center gap-1.5"
-          >
-            <Download className="w-3.5 h-3.5 text-[#04120C]" />
-            <span>Resume TeX</span>
+            <Sparkles className="w-3.5 h-3.5 text-[#04120C]" />
+            <span>SQL Agent Demo 🚀</span>
+            <ExternalLink className="w-3 h-3 text-[#04120C]" />
           </a>
         </div>
 
@@ -101,6 +97,12 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="lg:hidden bg-[#0d111a] border-b border-white/10 px-6 py-4 flex flex-col gap-3 shadow-2xl mt-2">
+          {/* Stamp 4 Banner on Mobile */}
+          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold">
+            <ShieldCheck className="w-4 h-4 shrink-0" />
+            <span>Stamp 4 Visa Holder — No Sponsorship Required</span>
+          </div>
+
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -112,23 +114,16 @@ export default function Navbar() {
               <span className="text-slate-500 text-xs">→</span>
             </a>
           ))}
-          <div className="flex flex-col gap-2 pt-2">
+
+          <div className="pt-2">
             <a
               href="https://text-to-sql-agent-uenh.onrender.com/"
               target="_blank"
               rel="noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="btn btn-secondary text-center justify-center text-xs py-2.5"
+              className="btn btn-primary w-full text-center justify-center text-xs py-2.5"
             >
               SQL Agent Live Demo 🚀
-            </a>
-            <a
-              href="/resume_faangpath.tex"
-              download="Ibrahim_Rinub_Babu_Resume.tex"
-              onClick={() => setMobileOpen(false)}
-              className="btn btn-primary text-center justify-center text-xs py-2.5"
-            >
-              Download Resume (TeX)
             </a>
           </div>
         </div>

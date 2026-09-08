@@ -1,11 +1,15 @@
 import React from 'react';
-import { UserCheck, CheckCircle2 } from 'lucide-react';
+import { UserCheck, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function SummarySection() {
   const summaryPoints = [
     {
+      bold: "Ireland Work Authorization — Stamp 4 Visa",
+      text: "Holds Stamp 4 Visa status in Ireland. Fully authorized for immediate full-time employment without requiring visa sponsorship or work permits."
+    },
+    {
       bold: "Data & Application Engineering Expertise",
-      text: "5+ years of expertise in designing scalable batch/real-time data pipelines and internal automation tools for fintech (Citi) and healthcare domains. Proficient in Python, PySpark, Kafka, Snowflake, and AWS, focusing on system performance, reliability, and automation."
+      text: "5+ years of expertise in designing scalable batch/real-time data pipelines and internal automation tools for fintech (Citi) and healthcare domains. Proficient in Python, PySpark, Kafka, Snowflake, and AWS."
     },
     {
       bold: "Internal Tooling & Workflow Automation",
@@ -22,10 +26,6 @@ export default function SummarySection() {
     {
       bold: "CI/CD & DevOps Automation",
       text: "Streamlined CI/CD pipelines using Harness, Jenkins, OpenShift, Docker, and Terraform, automating cloud infrastructure and deployment reliability."
-    },
-    {
-      bold: "AI-Assisted Development & Agentic Systems",
-      text: "Intensive usage of Devin UI for rapid microservice development, and builder of stateful self-healing Text-to-SQL agents (LangGraph + Gemini 3.6 Flash API)."
     }
   ];
 
@@ -45,11 +45,12 @@ export default function SummarySection() {
             </h2>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] font-mono text-xs font-semibold">
-              5+ Years Experience
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="px-3 py-1.5 rounded-lg bg-[#00F5A0]/15 border border-[#00F5A0]/40 text-[#00F5A0] font-mono text-xs font-bold flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-[#00F5A0]" />
+              Stamp 4 Visa (No Sponsorship Req.)
             </span>
-            <span className="px-3 py-1 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] font-mono text-xs font-semibold">
+            <span className="px-3 py-1.5 rounded-lg bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] font-mono text-xs font-semibold">
               AVP @ Citi
             </span>
           </div>
@@ -58,9 +59,20 @@ export default function SummarySection() {
         {/* Executive Summary Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {summaryPoints.map((point, idx) => (
-            <div key={idx} className="glass-card p-6 border border-white/10 hover:border-[#00D2FF]/40">
+            <div 
+              key={idx} 
+              className={`glass-card p-6 border transition-all ${
+                idx === 0 
+                  ? 'border-[#00F5A0]/50 bg-[#00F5A0]/[0.03] shadow-[0_0_20px_rgba(0,245,160,0.15)]' 
+                  : 'border-white/10 hover:border-[#00D2FF]/40'
+              }`}
+            >
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#00F5A0] shrink-0 mt-1" />
+                {idx === 0 ? (
+                  <ShieldCheck className="w-5 h-5 text-[#00F5A0] shrink-0 mt-1" />
+                ) : (
+                  <CheckCircle2 className="w-5 h-5 text-[#00F5A0] shrink-0 mt-1" />
+                )}
                 <div>
                   <h3 className="font-heading font-extrabold text-base text-white mb-2">
                     {point.bold}
