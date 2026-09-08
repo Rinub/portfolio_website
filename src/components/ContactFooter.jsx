@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Linkedin, Github, Copy, Check, Send, ShieldCheck } from 'lucide-react';
+import profilePic from '../assets/profile.jpg';
 
 export default function ContactFooter() {
   const [copied, setCopied] = useState(false);
@@ -47,12 +48,22 @@ export default function ContactFooter() {
           {/* Contact Details Card */}
           <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
             <div>
-              <h3 className="font-heading font-extrabold text-2xl text-white mb-1">
-                Ibrahim Rinub Babu
-              </h3>
-              <p className="text-xs text-[#00F5A0] font-mono mb-4">
-                Assistant Vice President @ Citi | AWS Data Engineer
-              </p>
+              {/* Profile Avatar & Name */}
+              <div className="flex items-center gap-3.5 mb-4">
+                <img
+                  src={profilePic}
+                  alt="Ibrahim Rinub Babu"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-[#00F5A0] shadow-md shadow-[#00F5A0]/20 shrink-0"
+                />
+                <div>
+                  <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-white">
+                    Ibrahim Rinub Babu
+                  </h3>
+                  <p className="text-xs text-[#00F5A0] font-mono">
+                    Assistant Vice President @ Citi | AWS Data Engineer
+                  </p>
+                </div>
+              </div>
 
               {/* Stamp 4 Visa Highlight */}
               <div className="p-3 rounded-xl bg-[#00F5A0]/15 border border-[#00F5A0]/40 text-[#00F5A0] text-xs font-mono font-bold flex items-center gap-2 mb-6">

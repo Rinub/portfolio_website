@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sparkles, Terminal, Cpu, ShieldCheck } from 'lucide-react';
+import profilePic from '../assets/profile.jpg';
 
 export default function HeroSection() {
   const roles = [
@@ -28,21 +29,31 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="max-w-4xl">
           
-          {/* Highlighted Status & Visa Badge */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#00F5A0] shadow-[0_0_10px_#00F5A0] shrink-0" />
-              <span className="text-xs font-mono font-medium text-[#00F5A0]">
-                ASSISTANT VICE PRESIDENT @ CITI DUBLIN
-              </span>
+          {/* Profile Picture & Status Badges Row */}
+          <div className="flex flex-wrap items-center gap-4 mb-6">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-[2px] bg-gradient-to-br from-[#00F5A0] to-[#00D2FF] shadow-[0_0_25px_rgba(0,245,160,0.3)] shrink-0">
+              <img
+                src={profilePic}
+                alt="Ibrahim Rinub Babu"
+                className="w-full h-full rounded-full object-cover border-2 border-[#07090e]"
+              />
+              <span className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-[#00F5A0] ring-2 ring-[#07090e]" />
             </div>
 
-            {/* Stamp 4 Highlight Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00F5A0]/15 border border-[#00F5A0]/40 text-[#00F5A0] backdrop-blur-md">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#00F5A0]" />
-              <span className="text-xs font-mono font-bold">
-                STAMP 4 VISA — NO SPONSORSHIP REQUIRED
-              </span>
+            <div className="flex flex-col gap-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md w-fit">
+                <span className="w-2 h-2 rounded-full bg-[#00F5A0] shadow-[0_0_8px_#00F5A0] shrink-0" />
+                <span className="text-xs font-mono font-medium text-[#00F5A0]">
+                  ASSISTANT VICE PRESIDENT @ CITI DUBLIN
+                </span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#00F5A0]/15 border border-[#00F5A0]/40 text-[#00F5A0] backdrop-blur-md w-fit">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#00F5A0]" />
+                <span className="text-xs font-mono font-bold">
+                  STAMP 4 VISA — NO SPONSORSHIP REQUIRED
+                </span>
+              </div>
             </div>
           </div>
 
