@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import SummarySection from './components/SummarySection';
+import ExperienceSection from './components/ExperienceSection';
+import ProjectsSection from './components/ProjectsSection';
+import SkillsMatrix from './components/SkillsMatrix';
 import PipelineVisualizer from './components/PipelineVisualizer';
 import AiShowcase from './components/AiShowcase';
-import TerminalCli from './components/TerminalCli';
-import ExperienceSection from './components/ExperienceSection';
-import SkillsMatrix from './components/SkillsMatrix';
-import ProjectsSection from './components/ProjectsSection';
 import EducationCertifications from './components/EducationCertifications';
+import TerminalCli from './components/TerminalCli';
 import ContactFooter from './components/ContactFooter';
 
 export default function App() {
@@ -16,13 +17,14 @@ export default function App() {
       <Navbar />
       <main>
         <HeroSection />
+        <SummarySection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <SkillsMatrix />
         <PipelineVisualizer />
         <AiShowcase />
-        <TerminalCli />
-        <ExperienceSection />
-        <SkillsMatrix />
-        <ProjectsSection />
         <EducationCertifications />
+        <TerminalCli />
       </main>
       <ContactFooter />
     </div>
