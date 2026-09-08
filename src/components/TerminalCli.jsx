@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, CornerDownLeft, Sparkles, Trash2, Code, Shield } from 'lucide-react';
+import { Terminal as TerminalIcon, CornerDownLeft, Trash2, Shield } from 'lucide-react';
 
 export default function TerminalCli() {
   const [inputVal, setInputVal] = useState('');
@@ -14,12 +14,21 @@ export default function TerminalCli() {
     }
   ]);
 
-  const bottomRef = useRef(null);
+  const terminalBodyRef = useRef(null);
+  const isInitialMount = useRef(true);
 
-  const commandChips = ['help', 'citi', 'aws', 'ai', 'skills', 'cat resume', 'contact'];
+  const commandChips = ['help', 'citi', 'aws', 'ai', 'skills', 'contact'];
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll the internal terminal container when user inputs a command, avoiding window scroll
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    }
   }, [history]);
 
   const handleCommand = (cmdStr) => {
@@ -43,7 +52,6 @@ export default function TerminalCli() {
   • aws         - AWS Cloud Architecture & Infrastructure Stack (Glue, S3, EMR, RDS)
   • ai          - Devin UI, Gemini API & Agentic Text-to-SQL system summary
   • skills      - Complete list of programming, database & DevOps technologies
-  • cat resume  - Formatted TeX Resume summary & career history
   • contact     - Direct contact numbers, email & location
   • clear       - Clear terminal history`;
         break;
@@ -80,21 +88,11 @@ export default function TerminalCli() {
   • CI/CD        : Harness, Jenkins, OpenShift, Docker, Terraform, Git, Bitbucket`;
         break;
 
-      case 'cat resume':
-      case 'cat resume_faangpath.tex':
-        response = `[RESUME SUMMARY - IBRAHIM RINUB BABU]
-  Role      : AVP - AWS Data Engineer & Application Developer
-  Location  : Co. Meath / Dublin, Ireland
-  Phone     : +353 892081811
-  Email     : rinubibrahim@gmail.com
-  Education : M.Sc Data Analytics (NCI Ireland) | B.E. (SREC India)
-  Certs     : IBM Data Science Professional | Apache Spark MLlib`;
-        break;
-
       case 'contact':
         response = `[CONTACT DETAILS]
   • Email    : rinubibrahim@gmail.com
   • Phone    : +353 892081811
+  • Status   : Stamp 4 Visa Holder (No Sponsorship Required)
   • LinkedIn : https://www.linkedin.com/in/ibrahimbabu/
   • GitHub   : https://github.com/Rinub
   • Location : Dublin, Ireland`;
@@ -116,19 +114,19 @@ export default function TerminalCli() {
   };
 
   return (
-    <section id="terminal" className="section bg-[#07090e] relative">
-      <div className="container relative z-10">
+    <section id="terminal" className="py-20 bg-[#07090e] relative border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="section-tag">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold uppercase mb-3">
             <TerminalIcon className="w-3.5 h-3.5" />
             <span>Interactive CLI Shell</span>
           </div>
-          <h2 className="section-title">
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white mb-3">
             Developer <span className="gradient-text-azure">Command Line</span> Interface
           </h2>
-          <p className="section-subtitle mx-auto">
+          <p className="text-sm text-slate-400 mx-auto">
             Interact directly with Ibrahim's portfolio system via terminal commands. 
             Type custom queries or click the quick action chips below.
           </p>
@@ -143,7 +141,7 @@ export default function TerminalCli() {
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
               <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
               <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              <span className="ml-2 font-mono text-xs text-[#94A3B8] flex items-center gap-2">
+              <span className="ml-2 font-mono text-xs text-slate-400 flex items-center gap-2">
                 <Shield className="w-3.5 h-3.5 text-[#00F5A0]" />
                 rinub@citi-aws-node:~$
               </span>
@@ -151,7 +149,7 @@ export default function TerminalCli() {
 
             <button
               onClick={() => handleCommand('clear')}
-              className="p-1.5 rounded hover:bg-white/10 text-[#94A3B8] hover:text-white transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
               title="Clear terminal"
             >
               <Trash2 className="w-3.5 h-3.5" />
@@ -160,7 +158,7 @@ export default function TerminalCli() {
 
           {/* Preset Quick Chips */}
           <div className="px-4 py-2.5 bg-black/40 border-b border-white/5 flex items-center gap-2 overflow-x-auto">
-            <span className="text-[11px] font-mono text-white/50 shrink-0">Quick Chips:</span>
+            <span className="text-[11px] font-mono text-slate-500 shrink-0">Quick Chips:</span>
             {commandChips.map((chip) => (
               <button
                 key={chip}
@@ -173,7 +171,7 @@ export default function TerminalCli() {
           </div>
 
           {/* Terminal Screen Body */}
-          <div className="p-5 h-[340px] overflow-y-auto font-mono text-xs space-y-3">
+          <div ref={terminalBodyRef} className="p-5 h-[320px] overflow-y-auto font-mono text-xs space-y-3">
             {history.map((item, idx) => (
               <div key={idx}>
                 {item.type === 'user' && (
@@ -183,13 +181,12 @@ export default function TerminalCli() {
                   <div className="text-[#00D2FF]">{item.text}</div>
                 )}
                 {item.type === 'output' && (
-                  <pre className="text-[#E2E8F0] whitespace-pre-wrap leading-relaxed">
+                  <pre className="text-slate-200 whitespace-pre-wrap leading-relaxed">
                     {item.text}
                   </pre>
                 )}
               </div>
             ))}
-            <div ref={bottomRef} />
           </div>
 
           {/* Command Input Form */}
@@ -200,7 +197,7 @@ export default function TerminalCli() {
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               placeholder="Type command ('help', 'citi', 'aws', 'skills', 'contact')..."
-              className="flex-1 bg-transparent text-white font-mono text-xs focus:outline-none placeholder-[#64748B]"
+              className="flex-1 bg-transparent text-white font-mono text-xs focus:outline-none placeholder-slate-500"
             />
             <button
               type="submit"
