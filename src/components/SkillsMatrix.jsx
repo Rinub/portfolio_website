@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cpu, Database, Server, Terminal, Cloud, ShieldCheck, Search, Code, Check } from 'lucide-react';
+import { Cpu, Database, Server, Terminal, Cloud, Search } from 'lucide-react';
 
 export default function SkillsMatrix() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -61,27 +61,24 @@ export default function SkillsMatrix() {
   });
 
   return (
-    <section id="skills" className="section relative bg-[#0b0e17]">
-      <div className="container relative z-10">
+    <section id="skills" className="py-20 bg-[#0b0e17] relative border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="section-tag">
-            <Cpu className="w-3.5 h-3.5" />
-            <span>Core Competencies</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-white/10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold uppercase mb-3">
+              <Cpu className="w-3.5 h-3.5" />
+              <span>Core Competencies</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
+              Technical <span className="gradient-text-azure">Skills & Stack</span> Matrix
+            </h2>
           </div>
-          <h2 className="section-title">
-            Technical <span className="gradient-text-azure">Skills & Stack</span> Matrix
-          </h2>
-          <p className="section-subtitle mx-auto">
-            Comprehensive breakdown of distributed big data tools, AWS cloud services, 
-            web microservices, and AI workflow integration.
-          </p>
         </div>
 
         {/* Filter Bar & Search */}
-        <div className="max-w-4xl mx-auto mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          
+        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
             {categories.map((cat) => (
@@ -91,7 +88,7 @@ export default function SkillsMatrix() {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all shrink-0 ${
                   selectedCategory === cat
                     ? 'bg-[#00F5A0] text-[#04120C] font-bold shadow-[0_0_15px_rgba(0,245,160,0.3)]'
-                    : 'bg-white/5 text-[#94A3B8] hover:text-white hover:bg-white/10 border border-white/10'
+                    : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/10'
                 }`}
               >
                 {cat}
@@ -101,20 +98,19 @@ export default function SkillsMatrix() {
 
           {/* Search Input */}
           <div className="relative w-full md:w-64">
-            <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 transform -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search skill (e.g. PySpark)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-full bg-black/40 border border-white/15 text-xs text-white placeholder-[#64748B] focus:border-[#00F5A0] focus:outline-none transition-colors"
+              className="w-full pl-9 pr-4 py-2 rounded-full bg-black/40 border border-white/15 text-xs text-white placeholder-slate-500 focus:border-[#00F5A0] focus:outline-none transition-colors"
             />
           </div>
-
         </div>
 
         {/* Skills Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredGroups.map((group, idx) => {
             const Icon = group.icon;
             return (
@@ -122,7 +118,7 @@ export default function SkillsMatrix() {
                 <div>
                   <div className="flex items-center gap-3 mb-4">
                     <div 
-                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
                       style={{ backgroundColor: `${group.color}15`, border: `1px solid ${group.color}30` }}
                     >
                       <Icon className="w-5 h-5" style={{ color: group.color }} />
@@ -131,7 +127,7 @@ export default function SkillsMatrix() {
                       <h3 className="font-heading font-extrabold text-white text-base">
                         {group.name}
                       </h3>
-                      <p className="text-xs text-[#94A3B8] font-mono">{group.category}</p>
+                      <p className="text-xs text-slate-400 font-mono">{group.category}</p>
                     </div>
                   </div>
 
@@ -144,7 +140,7 @@ export default function SkillsMatrix() {
                           className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
                             isHighlighted
                               ? 'bg-[#00F5A0] text-[#04120C] font-bold shadow-[0_0_10px_#00F5A0]'
-                              : 'bg-white/[0.04] border border-white/10 text-white/90 hover:border-white/30'
+                              : 'bg-white/[0.04] border border-white/10 text-slate-200 hover:border-white/30'
                           }`}
                         >
                           {skill}

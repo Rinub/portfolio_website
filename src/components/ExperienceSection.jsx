@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin, CheckCircle2, ChevronRight, Award, Building, Sparkles } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, CheckCircle2, Building } from 'lucide-react';
 
 export default function ExperienceSection() {
   const experiences = [
@@ -94,27 +94,26 @@ export default function ExperienceSection() {
   ];
 
   return (
-    <section id="experience" className="section relative bg-[#07090e]">
-      <div className="container relative z-10">
+    <section id="experience" className="py-20 relative bg-[#07090e] border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="section-tag">
-            <Briefcase className="w-3.5 h-3.5" />
-            <span>Career Progression</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-white/10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold uppercase mb-3">
+              <Briefcase className="w-3.5 h-3.5" />
+              <span>Career Progression</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
+              Professional <span className="gradient-text-emerald">Experience</span>
+            </h2>
           </div>
-          <h2 className="section-title">
-            Professional <span className="gradient-text-emerald">Experience</span>
-          </h2>
-          <p className="section-subtitle mx-auto">
-            5+ years driving high-concurrency data platforms, cloud migrations, and executive leadership at major institutions like Citi.
-          </p>
         </div>
 
         {/* Timeline Cards Container */}
-        <div className="space-y-8 max-w-5xl mx-auto">
+        <div className="space-y-8">
           {experiences.map((exp, idx) => (
-            <div key={idx} className="glass-card p-8 transition-all hover:border-[#00F5A0]/40">
+            <div key={idx} className="glass-card p-6 sm:p-8 transition-all hover:border-[#00F5A0]/40">
               
               {/* Top Row Info */}
               <div className="flex flex-wrap items-start justify-between gap-4 mb-6 pb-6 border-b border-white/10">
@@ -133,31 +132,31 @@ export default function ExperienceSection() {
                       </span>
                     )}
                   </div>
-                  <h3 className="text-2xl font-extrabold font-heading text-white">
+                  <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-white">
                     {exp.role}
                   </h3>
                   <div className="flex items-center gap-2 text-sm text-[#00D2FF] font-semibold mt-1">
                     <Building className="w-4 h-4" />
                     <span>{exp.company}</span>
                     <span className="text-white/30">•</span>
-                    <MapPin className="w-4 h-4 text-[#94A3B8]" />
-                    <span className="text-[#94A3B8] font-normal">{exp.location}</span>
+                    <MapPin className="w-4 h-4 text-slate-400" />
+                    <span className="text-slate-400 font-normal">{exp.location}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 text-xs font-mono text-[#94A3B8]">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 text-xs font-mono text-slate-300">
                   <Calendar className="w-3.5 h-3.5 text-[#00F5A0]" />
                   <span>{exp.period}</span>
                 </div>
               </div>
 
               {/* Achievement Bullets */}
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3 mb-6">
                 {exp.achievements.map((item, aIdx) => (
-                  <div key={aIdx} className="flex items-start gap-3 text-sm text-[#94A3B8]">
+                  <div key={aIdx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300">
                     <CheckCircle2 className="w-4 h-4 text-[#00F5A0] shrink-0 mt-1" />
                     <p className="leading-relaxed">
-                      <strong className="text-white">{item.bold}:</strong> {item.text}
+                      <strong className="text-white font-semibold">{item.bold}:</strong> {item.text}
                     </p>
                   </div>
                 ))}
@@ -165,7 +164,7 @@ export default function ExperienceSection() {
 
               {/* Tech Stack Badges */}
               <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-white/5">
-                <span className="text-xs font-mono text-white/50 mr-2">Technologies:</span>
+                <span className="text-xs font-mono text-slate-500 mr-2">Technologies:</span>
                 {exp.techStack.map((tech) => (
                   <span key={tech} className="tag-badge">
                     {tech}

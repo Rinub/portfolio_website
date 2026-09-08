@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserCheck, CheckCircle2, Shield, Award, Sparkles } from 'lucide-react';
+import { UserCheck, CheckCircle2 } from 'lucide-react';
 
 export default function SummarySection() {
   const summaryPoints = [
@@ -30,22 +30,19 @@ export default function SummarySection() {
   ];
 
   return (
-    <section id="summary" className="section bg-[#0b0e17] relative border-t border-white/10">
-      <div className="container relative z-10">
+    <section id="summary" className="py-20 bg-[#0b0e17] relative border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-white/10">
           <div>
-            <div className="section-tag">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F5A0]/10 border border-[#00F5A0]/30 text-[#00F5A0] text-xs font-mono font-semibold uppercase mb-3">
               <UserCheck className="w-3.5 h-3.5" />
               <span>Professional Overview</span>
             </div>
-            <h2 className="section-title mb-2">
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
               Executive <span className="gradient-text-azure">Summary</span>
             </h2>
-            <p className="text-sm text-[#94A3B8] max-w-xl">
-              High-concurrency data engineering, AWS cloud architecture, and AI automation background.
-            </p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -59,7 +56,7 @@ export default function SummarySection() {
         </div>
 
         {/* Executive Summary Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {summaryPoints.map((point, idx) => (
             <div key={idx} className="glass-card p-6 border border-white/10 hover:border-[#00D2FF]/40">
               <div className="flex items-start gap-3">
@@ -68,7 +65,7 @@ export default function SummarySection() {
                   <h3 className="font-heading font-extrabold text-base text-white mb-2">
                     {point.bold}
                   </h3>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {point.text}
                   </p>
                 </div>
